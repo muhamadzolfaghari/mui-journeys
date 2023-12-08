@@ -1,2 +1,2 @@
-# mui-journey-1
-The first challenge of Material UI
+# Mui Journeys
+A mini MUI course progress report to working with their components in an appropriated way.
