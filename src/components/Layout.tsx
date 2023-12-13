@@ -1,6 +1,12 @@
 import { Container } from "@mui/material";
 import { PropsWithChildren } from "react";
+import Header from "./Header";
 
 export default function Layout({ children }: PropsWithChildren) {
-  return <Container>{children}</Container>;
+  return (
+    <>
+      <Header />
+      <Container>{children}</Container>
+    </>
+  );
 }

@@ -4,7 +4,7 @@ import Layout from "./components/Layout";
 function App() {
   return (
     <Layout>
-      <Grid container sx={{ width: "100%", height: "100vh" }}>
+      <Grid container sx={{ width: "100%", height: "calc(100vh)" }}>
         <Grid item md={6} xs={12} sx={{ backgroundColor: "orange" }}>
           col1
         </Grid>
