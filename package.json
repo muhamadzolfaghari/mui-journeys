@@ -13,6 +13,8 @@
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@fontsource/quicksand": "^5.0.16",
+    "@fontsource/vazirmatn": "^5.0.18",
     "@mui/material": "^5.14.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
