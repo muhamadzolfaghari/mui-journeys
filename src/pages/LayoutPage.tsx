@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
-import Layout from "./components/Layout";
+import Layout from "../components/Layout";
 
-function App() {
+function LayoutPage() {
   return (
     <Layout>
       <Grid container sx={{ width: "100%", height: "calc(100vh)" }}>
@@ -37,4 +37,4 @@ function App() {
   );
 }
 
-export default App;
+export default LayoutPage;
