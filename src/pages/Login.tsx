@@ -68,7 +68,6 @@ export default function Login() {
     });
   }
 
-  
   return (
     <Layout>
       <Paper sx={{ borderRadius: 8, mt: 20, p: 6 }}>
