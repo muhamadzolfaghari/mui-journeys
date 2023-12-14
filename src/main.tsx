@@ -7,6 +7,8 @@ import RTL from "./components/RTL.tsx";
 import CssBaseline from "@mui/material/CssBaseline";
 import { BrowserRouter } from "react-router-dom";
 import AppRoutes from "./AppRoutes.tsx";
+import "@fontsource/vazirmatn";
+import "@fontsource/quicksand";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
