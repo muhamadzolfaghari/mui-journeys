@@ -1,20 +1,12 @@
 import { Button, Paper, Stack, TextField } from "@mui/material";
 import Layout from "../components/Layout";
 import { ChangeEvent, useEffect, useRef, useState, FormEvent } from "react";
-import { useForm } from "react-hook-form";
 
 const isEmailValid = (value: string) => /.+@.+\..+/.test(value);
 
 const isPasswordValid = (value: string) => /[a-zA-Z0-9]{6,}/.test(value);
 
-interface FromData {
-  email: string;
-  password: string;
-}
-
 export default function Login() {
-  const {register, } = useForm();
-
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(false);
