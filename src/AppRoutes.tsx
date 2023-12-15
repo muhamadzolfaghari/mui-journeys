@@ -6,6 +6,7 @@ import LoginWithFormikYup from "./pages/LoginWithFormikYup";
 
 const AppRoutes = () => (
   <Routes>
+    <Route path="" element={} />
     <Route path="/login-with-formik-yup" element={<LoginWithFormikYup />} />
     <Route path="/layout-page" element={<App />} />
     <Route path="/login" element={<Login />} />

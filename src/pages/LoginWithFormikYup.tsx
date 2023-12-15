@@ -1,6 +1,6 @@
 import { Button, Paper, Stack, TextField } from "@mui/material";
 import Layout from "../components/Layout";
-import yup from "yup";
+import * as yup from "yup";
 import { useFormik } from "formik";
 
 const validationSchema = yup.object({
