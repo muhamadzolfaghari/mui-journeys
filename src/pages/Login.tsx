@@ -1,80 +1,99 @@
 import { Button, Paper, Stack, TextField } from "@mui/material";
 import Layout from "../components/Layout";
-import * as yup from "yup";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { ChangeEvent, useEffect, useRef, useState, FormEvent } from "react";
 
-const validationSchema = yup.object({
-  email: yup
-    .string()
-    .email("ایمیل وارد شده صحیح نیست")
-    .required("فیلد ایمیل اجباری است"),
-  password: yup
-    .string()
-    .matches(/[a-zA-Z0-9]{6,}/, "رمز عبور اشتباه است")
-    .required("ورود رمز عبور اجباری است"),
-});
+const isEmailValid = (value: string) => /.+@.+\..+/.test(value);
 
-interface FormData {
-  email: string;
-  password: string;
-}
+const isPasswordValid = (value: string) => /[a-zA-Z0-9]{6,}/.test(value);
 
 export default function Login() {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-    resolver: yupResolver(validationSchema),
-  });
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [isValid, setIsValid] = useState<boolean>(false);
+  const [emailErrorMessge, setEmailErrorMessage] = useState<string>();
+  const [passwordErrorMessge, setPasswordErrorMessage] = useState<string>();
+  const isDirty = useRef(true);
 
-  const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
+  useEffect(() => {
+    if (!isDirty.current) {
+      return;
+    }
+
+    let newIsValid = true;
+
+    if (!isEmailValid(email)) {
+      newIsValid = false;
+    }
+
+    if (!isPasswordValid(password)) {
+      newIsValid = false;
+    }
+
+    setIsValid(newIsValid);
+  }, [email, password]);
+
+  function handleEmailChange(event: ChangeEvent<HTMLInputElement>) {
+    if (!isDirty.current) {
+      isDirty.current = true;
+    }
+
+    setEmail(event.target.value);
+
+    if (!isEmailValid(email)) {
+      setEmailErrorMessage("ایمیل شما معتبر نیست");
+    } else {
+      setEmailErrorMessage(undefined);
+    }
+  }
+
+  function handlePasswordChange(event: ChangeEvent<HTMLInputElement>) {
+    if (!isDirty.current) {
+      isDirty.current = true;
+    }
+
+    setPassword(event.target.value);
+
+    if (!isPasswordValid(password)) {
+      setPasswordErrorMessage("رمز عبور شما معتبر نیست");
+    } else {
+      setPasswordErrorMessage(undefined);
+    }
+  }
+
+  function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    console.log({
+      email,
+      password,
+    });
+  }
 
   return (
     <Layout>
       <Paper sx={{ borderRadius: 8, mt: 20, p: 6 }}>
-        <Stack component={"form"} onSubmit={handleSubmit(onSubmit)}>
-          <Controller
-            control={control}
-            render={({ field: { onBlur, onChange, value } }) => (
-              <TextField
-                value={value}
-                label="ایمیل"
-                sx={{ mb: 3 }}
-                error={Boolean(errors.email)}
-                helperText={errors.email?.message}
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-            name="email"
+        <Stack component={"form"} onSubmit={handleSubmit}>
+          <TextField
+            value={email}
+            label="ایمیل"
+            sx={{ mb: 3 }}
+            error={Boolean(emailErrorMessge)}
+            helperText={emailErrorMessge}
+            onChange={handleEmailChange}
           />
-          <Controller
-            control={control}
-            render={({ field: { onBlur, onChange, value } }) => (
-              <TextField
-                value={value}
-                label="رمزعبور"
-                type="password"
-                sx={{ mb: 3 }}
-                error={Boolean(errors.password)}
-                helperText={errors.password?.message}
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-            name="password"
+          <TextField
+            value={password}
+            label="رمزعبور"
+            type="password"
+            sx={{ mb: 3 }}
+            error={Boolean(passwordErrorMessge)}
+            helperText={passwordErrorMessge}
+            onChange={handlePasswordChange}
           />
           <Button
             type="submit"
             variant="contained"
             sx={{ pt: 1, pb: 1 }}
-            // disabled={!isValid}
+            disabled={!isValid}
           >
             ورود
           </Button>
