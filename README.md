@@ -12,6 +12,8 @@ Telegram Group: https://t.me/muhamadzl
 ## 4- A deep dive into the layout
 ## 5- Creating header
 ## 6- Using routing pages
-## 7- Validation Form - part 1
-## 8- Validation Form - part 2
-## 9- Validation From with formik and yup
+## 7- Validation form - part 1
+## 8- Validation form - part 2
+## 9- Validation form with Formik and yup
+## 10- Validation from with react-hook-form and yup
+## 11- Data visualization by `x-data-grid`
