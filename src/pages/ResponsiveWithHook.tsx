@@ -1,12 +1,20 @@
-import { Box, Typography } from "@mui/material";
+import {
+  Box,
+  Typography,
+  UseMediaQueryOptions,
+  useMediaQuery,
+} from "@mui/material";
 import Layout from "../components/Layout";
+import theme from "../lib/theme";
 
 const StatelessBreakpoints = () => {
+  const sm = useMediaQuery<Theme>((theme) => theme.breakpoints.down("sm"));
+
   console.log("component is rendered");
 
   return (
     <Layout>
-      <Typography>مثالهای Stateless Breakpoints</Typography>
+      <Typography>مثالهای Responsive With Hook</Typography>
       <Box
         bgcolor={{
           xs: "purple",
