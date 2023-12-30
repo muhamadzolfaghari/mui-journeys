@@ -6,7 +6,7 @@ export default function Layout({ children }: PropsWithChildren) {
   return (
     <>
       <Header />
-      <Toolbar />
+      <Toolbar sx={{ mb: 3 }} />
       <Container sx={{ height: "inherit" }}>{children}</Container>
     </>
   );
