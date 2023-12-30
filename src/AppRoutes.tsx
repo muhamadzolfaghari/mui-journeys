@@ -5,6 +5,7 @@ import LoginWithFormikYup from "./pages/LoginWithFormikYup";
 import Login from "./pages/LoginWithFormikYup";
 import XDataGrid from "./pages/XDataGrid";
 import StatelessBreakpoints from "./pages/StatelessBreakpoints";
+import ResponsiveWithHook from "./pages/ResponsiveWithHook";
 
 const AppRoutes = () => (
   <Routes>
@@ -17,6 +18,7 @@ const AppRoutes = () => (
     <Route path="*" element={<Home />} />
     <Route path="/x-data-grid" element={<XDataGrid />} />
     <Route path="stateless-breakpoints" element={<StatelessBreakpoints />} />
+    <Route path="responsive-with-hook" element={<ResponsiveWithHook />} />
   </Routes>
 );
 
