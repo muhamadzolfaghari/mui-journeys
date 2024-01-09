@@ -6,6 +6,7 @@ import Login from "./pages/LoginWithFormikYup";
 import XDataGrid from "./pages/XDataGrid";
 import StatelessBreakpoints from "./pages/StatelessBreakpoints";
 import ResponsiveWithHook from "./pages/ResponsiveWithHook";
+import CascadingInputs from "./pages/CascadingInputs";
 
 const AppRoutes = () => (
   <Routes>
@@ -19,6 +20,7 @@ const AppRoutes = () => (
     <Route path="/x-data-grid" element={<XDataGrid />} />
     <Route path="stateless-breakpoints" element={<StatelessBreakpoints />} />
     <Route path="responsive-with-hook" element={<ResponsiveWithHook />} />
+    <Route path="cascading-inputs" element={<CascadingInputs />} />
   </Routes>
 );
 
