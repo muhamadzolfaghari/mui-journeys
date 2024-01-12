@@ -1,8 +1,71 @@
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
-import { FormEvent, useEffect, useState } from "react";
+import {
+  Dispatch,
+  FormEvent,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
 import Layout from "../components/Layout";
+
+interface Field {
+  value: string;
+  error: string | null;
+}
+
+type Action =
+  | {
+      payload: { field: keyof State; value: string };
+      type: "changed_field_value";
+    }
+  | {
+      payload: { field: keyof State; error: string | null };
+      type: "changed_field_error";
+    };
+
+interface State {
+  name: Field;
+  username: Field;
+  password: Field;
+  confirmedPassword: Field;
+}
+
+const initialState: State = {
+  name: {
+    error: "",
+    value: "",
+  },
+  username: {
+    error: "",
+    value: "",
+  },
+  password: {
+    error: "",
+    value: "",
+  },
+  confirmedPassword: {
+    error: "",
+    value: "",
+  },
+};
+
+function fieldReducer(state: State, action: Action) {
+  switch (action.type) {
+    case "changed_field_value":
+      return { ...state, [action.payload.field]: {} };
+    case "changed_field_error":
+      return {
+        ...state,
+        [action.payload.field]: {
+          ...state[action.payload.field],
+          error: action.payload.error,
+        },
+      };
+  }
+}
 
 const CascadingInputs = () => {
   const [name, setName] = useState<string>("");
@@ -14,6 +77,20 @@ const CascadingInputs = () => {
   const [passwordError, setPasswordError] = useState<string>("");
   const [confirmedPasswordError, setConfirmedPasswordError] =
     useState<string>("");
+  const [state, dispatch] = useReducer(fieldReducer, initialState);
+
+  console.log(state.password);
+
+  useEffect(() => {
+    dispatch({
+      type: "changed_field_error",
+      payload: {
+        field: "password",
+        error: "tets",
+      },
+    });
+  }, []);
+  console.log(state.password);
 
   useEffect(() => {
     if (!name) {
