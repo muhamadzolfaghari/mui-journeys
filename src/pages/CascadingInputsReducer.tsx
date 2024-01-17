@@ -171,48 +171,17 @@ const CascadingInputsReducer = () => {
     }
   }, [state]);
 
-  const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    dispatch({
-      type: "changed_field_value",
-      payload: {
-        field: "name",
-        value,
-      },
-    });
-  };
-  const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    dispatch({
-      type: "changed_field_value",
-      payload: {
-        field: "username",
-        value,
-      },
-    });
-  };
-  const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    dispatch({
-      type: "changed_field_value",
-      payload: {
-        field: "password",
-        value,
-      },
-    });
-  };
-  const handleConfirmedPassword = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = event.target.value;
-    dispatch({
-      type: "changed_field_value",
-      payload: {
-        field: "confirmedPassword",
-        value,
-      },
-    });
-  };
+  const handleChange =
+    (field: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      const value = event.target.value;
+      dispatch({
+        type: "changed_field_value",
+        payload: {
+          field,
+          value,
+        },
+      });
+    };
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -223,7 +192,7 @@ const CascadingInputsReducer = () => {
       <Paper onSubmit={handleSubmit} sx={{ width: 350, m: "auto", p: 3 }}>
         <TextField
           value={state.name.value}
-          onChange={handleName}
+          onChange={handleChange("name")}
           size="small"
           label="نام"
           fullWidth
@@ -233,7 +202,7 @@ const CascadingInputsReducer = () => {
         />
         <TextField
           value={state.username.value}
-          onChange={handleUsername}
+          onChange={handleChange("password")}
           size="small"
           label="نام کاربری"
           fullWidth
@@ -243,7 +212,7 @@ const CascadingInputsReducer = () => {
         />
         <TextField
           value={state.password.value}
-          onChange={handlePassword}
+          onChange={handleChange("password")}
           size="small"
           label="رمزعبور"
           fullWidth
@@ -253,7 +222,7 @@ const CascadingInputsReducer = () => {
         />
         <TextField
           value={state.confirmedPassword.value}
-          onChange={handleConfirmedPassword}
+          onChange={handleChange("confirmedPassword")}
           size="small"
           label="تکرار رمزعبور"
           fullWidth
