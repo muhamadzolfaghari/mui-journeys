@@ -47,7 +47,7 @@ function fieldReducer(state: State, action: Action) {
   }
 }
 
-const inititalState: State = {
+const initialState: State = {
   name: {
     value: "",
     error: "",
@@ -67,7 +67,7 @@ const inititalState: State = {
 };
 
 const CascadingInputsReducer = () => {
-  const [state, dispatch] = useReducer(fieldReducer, inititalState);
+  const [state, dispatch] = useReducer(fieldReducer, initialState);
 
   useEffect(() => {
     if (!state.name.value) {
