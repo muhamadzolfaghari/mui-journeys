@@ -9,19 +9,3 @@ const Home = () => (
 );
 
 export default Home;
-
-// declare module "@mui/material" {
-//   type BoxOwnProps = {
-//     position?: "absolute";
-//     inset: number;
-//   };
-// }
-
-type AllowedPosition =
-  | { position: "absolute"; inset: number }
-  | { position: "fixed"; inset: number }
-  | { inset?: number }; // just in case of ignore error;
-
-const ProposalBox = ({ inset, ...rest }: BoxProps & AllowedPosition) => (
-  <Box {...rest} sx={{ ...rest.sx, inset }} />
-);
